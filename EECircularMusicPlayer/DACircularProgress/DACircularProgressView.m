@@ -8,18 +8,6 @@
 
 #import "DACircularProgressView.h"
 
-#import <QuartzCore/QuartzCore.h>
-
-@interface DACircularProgressLayer : CALayer
-
-@property(nonatomic, strong) UIColor *trackTintColor;
-@property(nonatomic, strong) UIColor *progressTintColor;
-@property(nonatomic) NSInteger roundedCorners;
-@property(nonatomic) CGFloat thicknessRatio;
-@property(nonatomic) CGFloat progress;
-
-@end
-
 @implementation DACircularProgressLayer
 
 @synthesize trackTintColor = _trackTintColor;
