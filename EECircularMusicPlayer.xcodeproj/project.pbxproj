@@ -19,6 +19,8 @@
 		98CA33C916324ECF00E8FB73 /* EEViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98CA33C816324ECF00E8FB73 /* EEViewController.m */; };
 		98CA33CC16324ECF00E8FB73 /* EEViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98CA33CA16324ECF00E8FB73 /* EEViewController.xib */; };
 		98CA33EA1632532C00E8FB73 /* EECircularMusicPlayerControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 98CA33E91632532C00E8FB73 /* EECircularMusicPlayerControl.m */; };
+		98CA33F4163253C700E8FB73 /* DACircularProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 98CA33F1163253C700E8FB73 /* DACircularProgressView.m */; };
+		98CA33F91632541400E8FB73 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98CA33F81632541400E8FB73 /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +42,11 @@
 		98CA33CB16324ECF00E8FB73 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/EEViewController.xib; sourceTree = "<group>"; };
 		98CA33E81632532C00E8FB73 /* EECircularMusicPlayerControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EECircularMusicPlayerControl.h; sourceTree = "<group>"; };
 		98CA33E91632532C00E8FB73 /* EECircularMusicPlayerControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EECircularMusicPlayerControl.m; sourceTree = "<group>"; };
+		98CA33F0163253C700E8FB73 /* DACircularProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DACircularProgressView.h; sourceTree = "<group>"; };
+		98CA33F1163253C700E8FB73 /* DACircularProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DACircularProgressView.m; sourceTree = "<group>"; };
+		98CA33F2163253C700E8FB73 /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.md; sourceTree = "<group>"; };
+		98CA33F3163253C700E8FB73 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		98CA33F81632541400E8FB73 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				98CA33F91632541400E8FB73 /* QuartzCore.framework in Frameworks */,
 				98CA33B016324ECF00E8FB73 /* UIKit.framework in Frameworks */,
 				98CA33B216324ECF00E8FB73 /* Foundation.framework in Frameworks */,
 				98CA33B416324ECF00E8FB73 /* CoreGraphics.framework in Frameworks */,
@@ -80,6 +88,7 @@
 				98CA33AF16324ECF00E8FB73 /* UIKit.framework */,
 				98CA33B116324ECF00E8FB73 /* Foundation.framework */,
 				98CA33B316324ECF00E8FB73 /* CoreGraphics.framework */,
+				98CA33F81632541400E8FB73 /* QuartzCore.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -114,10 +123,22 @@
 		98CA33DE1632508000E8FB73 /* EECircularMusicPlayer */ = {
 			isa = PBXGroup;
 			children = (
+				98CA33EF163253C700E8FB73 /* DACircularProgress */,
 				98CA33E81632532C00E8FB73 /* EECircularMusicPlayerControl.h */,
 				98CA33E91632532C00E8FB73 /* EECircularMusicPlayerControl.m */,
 			);
 			path = EECircularMusicPlayer;
+			sourceTree = "<group>";
+		};
+		98CA33EF163253C700E8FB73 /* DACircularProgress */ = {
+			isa = PBXGroup;
+			children = (
+				98CA33F0163253C700E8FB73 /* DACircularProgressView.h */,
+				98CA33F1163253C700E8FB73 /* DACircularProgressView.m */,
+				98CA33F2163253C700E8FB73 /* LICENSE.md */,
+				98CA33F3163253C700E8FB73 /* README.md */,
+			);
+			path = DACircularProgress;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -128,8 +149,8 @@
 			buildConfigurationList = 98CA33CF16324ECF00E8FB73 /* Build configuration list for PBXNativeTarget "EECircularMusicPlayer" */;
 			buildPhases = (
 				98CA33A716324ECF00E8FB73 /* Sources */,
-				98CA33A816324ECF00E8FB73 /* Frameworks */,
 				98CA33A916324ECF00E8FB73 /* Resources */,
+				98CA33A816324ECF00E8FB73 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -191,6 +212,7 @@
 				98CA33C016324ECF00E8FB73 /* EEAppDelegate.m in Sources */,
 				98CA33C916324ECF00E8FB73 /* EEViewController.m in Sources */,
 				98CA33EA1632532C00E8FB73 /* EECircularMusicPlayerControl.m in Sources */,
+				98CA33F4163253C700E8FB73 /* DACircularProgressView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
