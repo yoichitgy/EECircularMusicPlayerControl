@@ -7,7 +7,22 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DACircularProgressView.h"
 
-@interface EECircularMusicPlayerControl : UIView
+@interface EECircularMusicPlayerControl : UIControl
+
+@property(nonatomic) CGFloat progressTrackRatio;
+
+// Progress part
+@property(nonatomic, strong) UIColor *trackTintColor UI_APPEARANCE_SELECTOR;
+@property(nonatomic, strong) UIColor *progressTintColor UI_APPEARANCE_SELECTOR;
+@property(nonatomic) CGFloat progress;
+- (void)setProgress:(CGFloat)progress animated:(BOOL)animated;
+
+// Button part
+@property(nonatomic, strong) UIColor *buttonTopTintColor UI_APPEARANCE_SELECTOR;
+@property(nonatomic, strong) UIColor *buttonBottomTintColor UI_APPEARANCE_SELECTOR;
+@property(nonatomic, strong) UIColor *iconColor UI_APPEARANCE_SELECTOR;
+@property(nonatomic) BOOL playing;
 
 @end
