@@ -89,9 +89,9 @@
         CGFloat thicknessRatio = 0.3f;
         UIColor *trackTintColor = [UIColor colorWithRed:161.0f/255.0f green:173.0f/255.0f blue:194.0f/255.0f alpha:1.0f];
         UIColor *progressTintColor = [UIColor colorWithRed:85.0f/255.0f green:108.0f/255.0f blue:156.0f/255.0f alpha:1.0f];
-        UIColor *topTintColor = [UIColor colorWithRed:84.0f/255.0f green:127.0f/255.0f blue:210.0f/255.0f alpha:1.0f];
-        UIColor *bottomTintColor = [UIColor colorWithRed:35.0f/255.0f green:109.0f/255.0f blue:214.0f/255.0f alpha:1.0f];
-        UIColor *iconColor = [UIColor colorWithWhite:240.0f/255.0f alpha:1.0f];
+        UIColor *topTintColor = [UIColor colorWithRed:50.0f/255.0f green:107.0f/255.0f blue:210.0f/255.0f alpha:1.0f];
+        UIColor *bottomTintColor = [UIColor colorWithRed:30.0f/255.0f green:85.0f/255.0f blue:205.0f/255.0f alpha:1.0f];
+        UIColor *iconColor = [UIColor colorWithWhite:210.0f/255.0f alpha:1.0f];
         
         // Progress layer
         self.progressLayer = [DACircularProgressLayer layer];
