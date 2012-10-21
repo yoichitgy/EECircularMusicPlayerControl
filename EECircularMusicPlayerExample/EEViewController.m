@@ -7,8 +7,12 @@
 //
 
 #import "EEViewController.h"
+#import "EECircularMusicPlayerControl.h"
 
 @interface EEViewController ()
+
+@property(nonatomic, strong) EECircularMusicPlayerControl *player;
+@property (strong, nonatomic) NSTimer *timer;
 
 @end
 
@@ -17,13 +21,46 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+	
+    self.player = [[EECircularMusicPlayerControl alloc] initWithFrame:CGRectMake(135.0f, 90.0f, 50.0f, 50.0f)];
+    [self.player addTarget:self action:@selector(didTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.player];
 }
 
-- (void)didReceiveMemoryWarning
+- (void)progressChange
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    CGFloat progress = self.player.progress + 0.001f;
+    [self.player setProgress:progress animated:YES];
+    
+    if (self.player.progress >= 1.0f && [self.timer isValid])
+    {
+        [self stopAnimation];
+        self.player.playing = false;
+        self.player.progress = 0.0f;
+    }
+}
+
+- (void)startAnimation
+{
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(progressChange) userInfo:nil repeats:YES];
+}
+
+- (void)stopAnimation
+{
+    [self.timer invalidate];
+    self.timer = nil;
+}
+
+- (void)didTouchUpInside:(id)sender
+{
+    BOOL nowPlaying = self.player.playing;
+    if (nowPlaying) {
+        [self stopAnimation];
+    }
+    else {
+        [self startAnimation];
+    }
+    self.player.playing = !nowPlaying;
 }
 
 @end
