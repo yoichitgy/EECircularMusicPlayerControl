@@ -140,6 +140,13 @@
 
 
 #pragma mark - EECircularMusicPlayerControl
+@interface EECircularMusicPlayerControl ()
+
+@property (strong, nonatomic) NSTimer *timer;
+
+@end
+
+
 @implementation EECircularMusicPlayerControl
 
 + (Class)layerClass
@@ -171,6 +178,11 @@
     if (self) {
     }
     return self;     
+}
+
+- (void)dealloc
+{
+    [self.timer invalidate];
 }
 
 - (void)didMoveToWindow
@@ -276,6 +288,23 @@
 {
     self.circularMusicPlayerLayer.buttonLayer.playing = playing;
     [self.circularMusicPlayerLayer.buttonLayer setNeedsDisplay];
+    
+    [self.timer invalidate];
+    if (playing) {
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:0.02 target:self selector:@selector(didTimeChange) userInfo:nil repeats:YES];
+    }
+    else {
+        self.timer = nil;
+        self.currentTime = 0.0;
+    }
+}
+
+#pragma mark Event Handler
+- (void)didTimeChange
+{
+    if ([self.delegate respondsToSelector:@selector(currentTime)]) {
+        self.currentTime = self.delegate.currentTime;
+    }
 }
 
 @end

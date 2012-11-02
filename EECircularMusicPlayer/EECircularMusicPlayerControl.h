@@ -9,8 +9,17 @@
 #import <UIKit/UIKit.h>
 #import "DACircularProgressView.h"
 
+@protocol EECircularMusicPlayerControlDelegate <NSObject>
+
+@optional
+- (NSTimeInterval)currentTime;
+
+@end
+
+
 @interface EECircularMusicPlayerControl : UIControl
 
+@property(nonatomic, unsafe_unretained) id<EECircularMusicPlayerControlDelegate> delegate;
 @property(nonatomic) CGFloat progressTrackRatio;
 
 // Progress part
