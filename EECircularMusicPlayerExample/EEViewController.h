@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "EECircularMusicPlayerControl.h"
 
-@interface EEViewController : UIViewController
+@interface EEViewController : UIViewController <EECircularMusicPlayerControlDelegate>
 
 @end
