@@ -23,26 +23,27 @@
     [super viewDidLoad];
 	
     self.player = [[EECircularMusicPlayerControl alloc] initWithFrame:CGRectMake(135.0f, 90.0f, 50.0f, 50.0f)];
+    self.player.duration = 60.0;
     [self.player addTarget:self action:@selector(didTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.player];
 }
 
-- (void)progressChange
+- (void)timeChange
 {
-    CGFloat progress = self.player.progress + 0.001f;
-    [self.player setProgress:progress animated:YES];
+    NSTimeInterval time = self.player.currentTime + 0.02;
+    [self.player setCurrentTime:time animated:YES];
     
-    if (self.player.progress >= 1.0f && [self.timer isValid])
+    if (self.player.currentTime >= self.player.duration && [self.timer isValid])
     {
         [self stopAnimation];
         self.player.playing = false;
-        self.player.progress = 0.0f;
+        self.player.currentTime = 0.0;
     }
 }
 
 - (void)startAnimation
 {
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(progressChange) userInfo:nil repeats:YES];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.02 target:self selector:@selector(timeChange) userInfo:nil repeats:YES];
 }
 
 - (void)stopAnimation
