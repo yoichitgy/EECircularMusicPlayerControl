@@ -203,25 +203,26 @@
     [self.circularMusicPlayerLayer.progressLayer setNeedsDisplay];
 }
 
--(CGFloat)progress
+- (NSTimeInterval)currentTime
 {
-    return self.circularMusicPlayerLayer.progressLayer.progress;
+    return self.circularMusicPlayerLayer.progressLayer.progress * self.duration;
 }
 
-- (void)setProgress:(CGFloat)progress
+- (void)setCurrentTime:(NSTimeInterval)currentTime
 {
-    [self setProgress:progress animated:NO];
+    [self setCurrentTime:currentTime animated:NO];
 }
 
-- (void)setProgress:(CGFloat)progress animated:(BOOL)animated
+- (void)setCurrentTime:(NSTimeInterval)currentTime animated:(BOOL)animated
 {
-    CGFloat pinnedProgress = MIN(MAX(progress, 0.f), 1.f);
+    CGFloat progress = self.duration <= 0.0 ? 0.0f : currentTime / self.duration;
+    CGFloat pinnedProgress = MIN(MAX(progress, 0.0f), 1.0f);
     if (animated)
     {
         CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"progress"];
-        animation.duration = fabsf(self.progress - pinnedProgress); // Same duration as UIProgressView animation
+        animation.duration = fabsf(progress - pinnedProgress); // Same duration as UIProgressView animation
         animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-        animation.fromValue = [NSNumber numberWithFloat:self.progress];
+        animation.fromValue = [NSNumber numberWithFloat:progress];
         animation.toValue = [NSNumber numberWithFloat:pinnedProgress];
         [self.circularMusicPlayerLayer.progressLayer addAnimation:animation forKey:@"progress"];
     }

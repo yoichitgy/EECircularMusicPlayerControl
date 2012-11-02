@@ -16,8 +16,9 @@
 // Progress part
 @property(nonatomic, strong) UIColor *trackTintColor UI_APPEARANCE_SELECTOR;
 @property(nonatomic, strong) UIColor *progressTintColor UI_APPEARANCE_SELECTOR;
-@property(nonatomic) CGFloat progress;
-- (void)setProgress:(CGFloat)progress animated:(BOOL)animated;
+@property(nonatomic) NSTimeInterval duration;
+@property(nonatomic) NSTimeInterval currentTime;
+- (void)setCurrentTime:(NSTimeInterval)currentTime animated:(BOOL)animated;
 
 // Button part
 @property(nonatomic, strong) UIColor *buttonTopTintColor UI_APPEARANCE_SELECTOR;
