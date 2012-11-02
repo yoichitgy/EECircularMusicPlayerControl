@@ -16,11 +16,21 @@
 @property(nonatomic, strong) UIColor *topTintColor;
 @property(nonatomic, strong) UIColor *bottomTintColor;
 @property(nonatomic, strong) UIColor *iconColor;
+@property(nonatomic) BOOL enabled;
 @property(nonatomic) BOOL playing;
 
 @end
 
 @implementation EEPlayerButtonLayer
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        self.enabled = YES;
+    }
+    return self;
+}
 
 - (void)drawInContext:(CGContextRef)context
 {
@@ -31,19 +41,32 @@
                                   iconFrameOffset * circleSize.height,
                                   iconRatio * circleSize.width,
                                   iconRatio * circleSize.height);
+    
+    UIColor *topTintColor, *bottomTintColor, *iconColor;
+    if (self.enabled) {
+        topTintColor = self.topTintColor;
+        bottomTintColor = self.bottomTintColor;
+        iconColor = self.iconColor;
+    }
+    else {
+        CGFloat factor = 0.75f;
+        topTintColor = [self.topTintColor colorWithAlphaComponent:factor];
+        bottomTintColor = [self.bottomTintColor colorWithAlphaComponent:factor];
+        iconColor = [self.iconColor colorWithAlphaComponent:factor];
+    }
 
     // Fill circle area
     CGFloat radius = 0.5f * circleSize.width;
     int clockwise = 0;
-    CGContextSetFillColorWithColor(context, self.topTintColor.CGColor);
+    CGContextSetFillColorWithColor(context, topTintColor.CGColor);
     CGContextAddArc(context, radius, radius, radius, M_PI, 0.0f, clockwise);
     CGContextFillPath(context);
-    CGContextSetFillColorWithColor(context, self.bottomTintColor.CGColor);
+    CGContextSetFillColorWithColor(context, bottomTintColor.CGColor);
     CGContextAddArc(context, radius, radius, radius, 0.0f, M_PI, clockwise);
     CGContextFillPath(context);
    
     // Draw play/stop icon.
-    CGContextSetFillColorWithColor(context, self.iconColor.CGColor);
+    CGContextSetFillColorWithColor(context, iconColor.CGColor);
     if (self.playing) {
         CGFloat factor = 0.8f;
         CGFloat originOffset = (1.0f - factor) / 2.0f;
@@ -190,6 +213,13 @@
     CGFloat scale = [UIScreen mainScreen].scale;
     self.circularMusicPlayerLayer.progressLayer.contentsScale = scale;
     self.circularMusicPlayerLayer.buttonLayer.contentsScale = scale;
+}
+
+- (void)setEnabled:(BOOL)enabled
+{
+    [super setEnabled:enabled];
+    self.circularMusicPlayerLayer.progressLayer.enabled = enabled;
+    self.circularMusicPlayerLayer.buttonLayer.enabled = enabled;
 }
 
 #pragma mark Progress Part

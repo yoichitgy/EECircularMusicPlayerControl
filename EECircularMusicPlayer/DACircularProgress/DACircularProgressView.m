@@ -21,6 +21,15 @@
     return [key isEqualToString:@"progress"] ? YES : [super needsDisplayForKey:key];
 }
 
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        self.enabled = YES;
+    }
+    return self;
+}
+
 - (id)initWithLayer:(DACircularProgressLayer *)layer
 {
     self = [super initWithLayer:layer];
@@ -31,6 +40,7 @@
         self.roundedCorners = layer.roundedCorners;
         self.thicknessRatio = layer.thicknessRatio;
         self.progress = layer.progress;
+        self.enabled = YES;
     }
     return self;
 }
@@ -44,7 +54,18 @@
     CGFloat progress = MIN(self.progress, 1.f - FLT_EPSILON);
     CGFloat radians = (progress * 2 * M_PI) - M_PI_2;
     
-    CGContextSetFillColorWithColor(context, self.trackTintColor.CGColor);
+    UIColor *trackTintColor, *progressTintColor;
+    if (self.enabled) {
+        trackTintColor = self.trackTintColor;
+        progressTintColor = self.progressTintColor;
+    }
+    else {
+        CGFloat factor = 0.75f;
+        trackTintColor = [self.trackTintColor colorWithAlphaComponent:factor];
+        progressTintColor = [self.progressTintColor colorWithAlphaComponent:factor];
+    }
+    
+    CGContextSetFillColorWithColor(context, trackTintColor.CGColor);
     CGMutablePathRef trackPath = CGPathCreateMutable();
     CGPathMoveToPoint(trackPath, NULL, centerPoint.x, centerPoint.y);
     CGPathAddArc(trackPath, NULL, centerPoint.x, centerPoint.y, radius, 3 * M_PI_2, -M_PI_2, NO);
@@ -55,7 +76,7 @@
     
     if (progress > 0.f)
     {
-        CGContextSetFillColorWithColor(context, self.progressTintColor.CGColor);
+        CGContextSetFillColorWithColor(context, progressTintColor.CGColor);
         CGMutablePathRef progressPath = CGPathCreateMutable();
         CGPathMoveToPoint(progressPath, NULL, centerPoint.x, centerPoint.y);
         CGPathAddArc(progressPath, NULL, centerPoint.x, centerPoint.y, radius, 3 * M_PI_2, radians, NO);

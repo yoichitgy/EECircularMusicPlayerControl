@@ -16,6 +16,7 @@
 @property(nonatomic) NSInteger roundedCorners;
 @property(nonatomic) CGFloat thicknessRatio;
 @property(nonatomic) CGFloat progress;
+@property(nonatomic) BOOL enabled;
 
 @end
 
