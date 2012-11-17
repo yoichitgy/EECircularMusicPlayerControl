@@ -16,7 +16,11 @@
 @property(nonatomic, strong) UIColor *topTintColor;
 @property(nonatomic, strong) UIColor *bottomTintColor;
 @property(nonatomic, strong) UIColor *iconColor;
+@property(nonatomic, strong) UIColor *highlightedTopTintColor;
+@property(nonatomic, strong) UIColor *highlightedBottomTintColor;
+@property(nonatomic, strong) UIColor *highlightedIconColor;
 @property(nonatomic) BOOL enabled;
+@property(nonatomic) BOOL highlighted;
 @property(nonatomic) BOOL playing;
 
 @end
@@ -44,9 +48,9 @@
     
     UIColor *topTintColor, *bottomTintColor, *iconColor;
     if (self.enabled) {
-        topTintColor = self.topTintColor;
-        bottomTintColor = self.bottomTintColor;
-        iconColor = self.iconColor;
+        topTintColor = self.highlighted ? self.highlightedTopTintColor : self.topTintColor;
+        bottomTintColor = self.highlighted ? self.highlightedBottomTintColor : self.bottomTintColor;
+        iconColor = self.highlighted ? self.highlightedIconColor : self.iconColor;
     }
     else {
         CGFloat factor = 0.75f;
@@ -115,12 +119,19 @@
         UIColor *topTintColor = [UIColor colorWithRed:50.0f/255.0f green:107.0f/255.0f blue:210.0f/255.0f alpha:1.0f];
         UIColor *bottomTintColor = [UIColor colorWithRed:30.0f/255.0f green:85.0f/255.0f blue:205.0f/255.0f alpha:1.0f];
         UIColor *iconColor = [UIColor colorWithWhite:210.0f/255.0f alpha:1.0f];
-        
+        UIColor *highlightedTrackTintColor = [UIColor colorWithRed:118.0f/255.0f green:131.0f/255.0f blue:151.0f/255.0f alpha:1.0f];
+        UIColor *highlightedProgressTintColor = [UIColor colorWithRed:42.0f/255.0f green:59.0f/255.0f blue:92.0f/255.0f alpha:1.0f];
+        UIColor *highlightedTopTintColor = [UIColor colorWithRed:11.0f/255.0f green:76.0f/255.0f blue:176.0f/255.0f alpha:1.0f];
+        UIColor *highlightedBottomTintColor = [UIColor colorWithRed:0.0f/255.0f green:44.0f/255.0f blue:126.0f/255.0f alpha:1.0f];
+        UIColor *highlightedIconColor = [UIColor colorWithWhite:174.0f/255.0f alpha:1.0f];
+
         // Progress layer
         self.progressLayer = [DACircularProgressLayer layer];
         self.progressLayer.thicknessRatio = thicknessRatio;
         self.progressLayer.trackTintColor = trackTintColor;
         self.progressLayer.progressTintColor = progressTintColor;
+        self.progressLayer.highlightedTrackTintColor = highlightedTrackTintColor;
+        self.progressLayer.highlightedProgressTintColor = highlightedProgressTintColor;
         self.progressLayer.roundedCorners = 0;
         [self addSublayer:self.progressLayer];
         
@@ -129,6 +140,9 @@
         self.buttonLayer.topTintColor = topTintColor;
         self.buttonLayer.bottomTintColor = bottomTintColor;
         self.buttonLayer.iconColor = iconColor;
+        self.buttonLayer.highlightedTopTintColor = highlightedTopTintColor;
+        self.buttonLayer.highlightedBottomTintColor = highlightedBottomTintColor;
+        self.buttonLayer.highlightedIconColor = highlightedIconColor;
         [self addSublayer:self.buttonLayer];
     }
     return self;
@@ -220,6 +234,17 @@
     [super setEnabled:enabled];
     self.circularMusicPlayerLayer.progressLayer.enabled = enabled;
     self.circularMusicPlayerLayer.buttonLayer.enabled = enabled;
+    [self.circularMusicPlayerLayer.progressLayer setNeedsDisplay];
+    [self.circularMusicPlayerLayer.buttonLayer setNeedsDisplay];
+}
+
+- (void)setHighlighted:(BOOL)highlighted
+{
+    [super setHighlighted:highlighted];
+    self.circularMusicPlayerLayer.progressLayer.highlighted = highlighted;
+    self.circularMusicPlayerLayer.buttonLayer.highlighted = highlighted;
+    [self.circularMusicPlayerLayer.progressLayer setNeedsDisplay];
+    [self.circularMusicPlayerLayer.buttonLayer setNeedsDisplay];
 }
 
 #pragma mark Progress Part
@@ -242,6 +267,28 @@
 - (void)setProgressTintColor:(UIColor *)progressTintColor
 {
     self.circularMusicPlayerLayer.progressLayer.progressTintColor = progressTintColor;
+    [self.circularMusicPlayerLayer.progressLayer setNeedsDisplay];
+}
+
+- (UIColor *)highlightedTrackTintColor
+{
+    return self.circularMusicPlayerLayer.progressLayer.highlightedTrackTintColor;
+}
+
+- (void)setHighlightedTrackTintColor:(UIColor *)highlightedTrackTintColor
+{
+    self.circularMusicPlayerLayer.progressLayer.highlightedTrackTintColor = highlightedTrackTintColor;
+    [self.circularMusicPlayerLayer.progressLayer setNeedsDisplay];
+}
+
+- (UIColor *)highlightedProgressTintColor
+{
+    return self.circularMusicPlayerLayer.progressLayer.highlightedProgressTintColor;
+}
+
+- (void)setHighlightedProgressTintColor:(UIColor *)highlightedProgressTintColor
+{
+    self.circularMusicPlayerLayer.progressLayer.highlightedProgressTintColor = highlightedProgressTintColor;
     [self.circularMusicPlayerLayer.progressLayer setNeedsDisplay];
 }
 
@@ -306,6 +353,39 @@
 - (void)setIconColor:(UIColor *)iconColor
 {
     self.circularMusicPlayerLayer.buttonLayer.iconColor = iconColor;
+    [self.circularMusicPlayerLayer.buttonLayer setNeedsDisplay];
+}
+
+- (UIColor *)highlightedButtonTopTintColor
+{
+    return self.circularMusicPlayerLayer.buttonLayer.highlightedTopTintColor;
+}
+
+- (void)setHighlightedButtonTopTintColor:(UIColor *)highlightedButtonTopTintColor
+{
+    self.circularMusicPlayerLayer.buttonLayer.highlightedTopTintColor = highlightedButtonTopTintColor;
+    [self.circularMusicPlayerLayer.buttonLayer setNeedsDisplay];
+}
+
+- (UIColor *)highlightedButtonBottomTintColor
+{
+    return self.circularMusicPlayerLayer.buttonLayer.highlightedBottomTintColor;
+}
+
+- (void)setHighlightedButtonBottomTintColor:(UIColor *)highlightedButtonBottomTintColor
+{
+    self.circularMusicPlayerLayer.buttonLayer.highlightedBottomTintColor = highlightedButtonBottomTintColor;
+    [self.circularMusicPlayerLayer.buttonLayer setNeedsDisplay];
+}
+
+- (UIColor *)highlightedIconColor
+{
+    return self.circularMusicPlayerLayer.buttonLayer.highlightedIconColor;
+}
+
+- (void)setHighlightedIconColor:(UIColor *)highlightedIconColor
+{
+    self.circularMusicPlayerLayer.buttonLayer.highlightedIconColor = highlightedIconColor;
     [self.circularMusicPlayerLayer.buttonLayer setNeedsDisplay];
 }
 

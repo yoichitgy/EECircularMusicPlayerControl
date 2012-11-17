@@ -12,9 +12,13 @@
 
 @synthesize trackTintColor = _trackTintColor;
 @synthesize progressTintColor = _progressTintColor;
+@synthesize highlightedTrackTintColor = _highlightedTrackTintColor;
+@synthesize highlightedProgressTintColor = _highlightedProgressTintColor;
 @synthesize roundedCorners = _roundedCorners;
 @synthesize thicknessRatio = _thicknessRatio;
 @synthesize progress = _progress;
+@synthesize enabled = _enabled;
+@synthesize highlighted = _highlighted;
 
 + (BOOL)needsDisplayForKey:(NSString *)key
 {
@@ -37,10 +41,13 @@
     {
         self.trackTintColor = layer.trackTintColor;
         self.progressTintColor = layer.progressTintColor;
+        self.highlightedTrackTintColor = layer.highlightedTrackTintColor;
+        self.highlightedProgressTintColor = layer.highlightedTrackTintColor;
         self.roundedCorners = layer.roundedCorners;
         self.thicknessRatio = layer.thicknessRatio;
         self.progress = layer.progress;
-        self.enabled = YES;
+        self.enabled = layer.enabled;
+        self.highlighted = layer.highlighted;
     }
     return self;
 }
@@ -56,8 +63,8 @@
     
     UIColor *trackTintColor, *progressTintColor;
     if (self.enabled) {
-        trackTintColor = self.trackTintColor;
-        progressTintColor = self.progressTintColor;
+        trackTintColor = self.highlighted ? self.highlightedTrackTintColor : self.trackTintColor;
+        progressTintColor = self.highlighted ? self.highlightedProgressTintColor : self.progressTintColor;
     }
     else {
         CGFloat factor = 0.75f;
@@ -205,6 +212,28 @@
 - (void)setProgressTintColor:(UIColor *)progressTintColor
 {
     self.circularProgressLayer.progressTintColor = progressTintColor;
+    [self.circularProgressLayer setNeedsDisplay];
+}
+
+- (UIColor *)highlightedTrackTintColor
+{
+    return self.circularProgressLayer.highlightedTrackTintColor;
+}
+
+- (void)setHighlightedTrackTintColor:(UIColor *)highlightedTrackTintColor
+{
+    self.circularProgressLayer.highlightedTrackTintColor = highlightedTrackTintColor;
+    [self.circularProgressLayer setNeedsDisplay];
+}
+
+- (UIColor *)highlightedProgressTintColor
+{
+    return self.circularProgressLayer.highlightedProgressTintColor;
+}
+
+- (void)setHighlightedProgressTintColor:(UIColor *)highlightedProgressTintColor
+{
+    self.circularProgressLayer.highlightedProgressTintColor = highlightedProgressTintColor;
     [self.circularProgressLayer setNeedsDisplay];
 }
 

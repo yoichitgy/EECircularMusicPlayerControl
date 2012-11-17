@@ -25,6 +25,8 @@
 // Progress part
 @property(nonatomic, strong) UIColor *trackTintColor UI_APPEARANCE_SELECTOR;
 @property(nonatomic, strong) UIColor *progressTintColor UI_APPEARANCE_SELECTOR;
+@property(nonatomic, strong) UIColor *highlightedTrackTintColor UI_APPEARANCE_SELECTOR;
+@property(nonatomic, strong) UIColor *highlightedProgressTintColor UI_APPEARANCE_SELECTOR;
 @property(nonatomic) NSTimeInterval duration;
 @property(nonatomic) NSTimeInterval currentTime;
 - (void)setCurrentTime:(NSTimeInterval)currentTime animated:(BOOL)animated;
@@ -33,6 +35,9 @@
 @property(nonatomic, strong) UIColor *buttonTopTintColor UI_APPEARANCE_SELECTOR;
 @property(nonatomic, strong) UIColor *buttonBottomTintColor UI_APPEARANCE_SELECTOR;
 @property(nonatomic, strong) UIColor *iconColor UI_APPEARANCE_SELECTOR;
+@property(nonatomic, strong) UIColor *highlightedButtonTopTintColor UI_APPEARANCE_SELECTOR;
+@property(nonatomic, strong) UIColor *highlightedButtonBottomTintColor UI_APPEARANCE_SELECTOR;
+@property(nonatomic, strong) UIColor *highlightedIconColor UI_APPEARANCE_SELECTOR;
 @property(nonatomic) BOOL playing;
 
 @end
