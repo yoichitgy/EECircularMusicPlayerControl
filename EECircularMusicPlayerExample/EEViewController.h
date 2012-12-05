@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AVFoundation/AVFoundation.h>
 #import "EECircularMusicPlayerControl.h"
 
-@interface EEViewController : UIViewController <EECircularMusicPlayerControlDelegate>
+@interface EEViewController : UIViewController <EECircularMusicPlayerControlDelegate, AVAudioPlayerDelegate>
 
 @property (strong, nonatomic) IBOutlet EECircularMusicPlayerControl *player;
 - (IBAction)didTouchUpInside:(id)sender;

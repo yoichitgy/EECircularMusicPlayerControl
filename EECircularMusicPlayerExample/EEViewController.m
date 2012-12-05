@@ -8,40 +8,64 @@
 
 #import "EEViewController.h"
 
+
 @interface EEViewController ()
 
-@property(nonatomic) NSTimeInterval time;
+@property(nonatomic, strong) AVAudioPlayer *audioPlayer;
 
 @end
+
 
 @implementation EEViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	
+    
+    // This is an example to use AVAudioPlayer to play a music.
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"Jimdubtrix_XTC-of-Gold-160" ofType:@"mp3"];
+    NSURL *url = [NSURL fileURLWithPath:path];
+    self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:nil];
+    self.audioPlayer.delegate = self;
+    [self.audioPlayer prepareToPlay];
+    
+    // Set duration
+    self.player.duration = self.audioPlayer.duration;
     self.player.delegate = self;
-    self.player.duration = 60.0;
 }
 
-- (void)viewDidUnload {
-    [self setPlayer:nil];
-    [super viewDidUnload];
-}
-
-- (NSTimeInterval)currentTime
+- (void)viewDidUnload
 {
-    self.time += 0.02;
-    return self.time;
+    self.player = nil;
+    self.audioPlayer = nil;
+    [super viewDidUnload];
 }
 
 - (IBAction)didTouchUpInside:(id)sender
 {
-    BOOL nowPlaying = self.player.playing;
-    self.player.playing = !nowPlaying;
-    if (!nowPlaying) {
-        self.time = 0.0;
+    BOOL startsPlaying = !self.audioPlayer.playing;
+    self.player.playing = startsPlaying;
+    if (startsPlaying) {
+        [self.audioPlayer play];
     }
+    else {
+        [self.audioPlayer stop];
+        self.audioPlayer.currentTime = 0.0;
+        [self.audioPlayer prepareToPlay];
+    }
+}
+
+#pragma mark - EECircularMusicPlayerControlDelegate
+- (NSTimeInterval)currentTime
+{
+    return self.audioPlayer.currentTime;
+}
+
+#pragma mark - AVAudioPlayerDelegate
+- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
+{
+    self.player.playing = NO;
+    [self.audioPlayer prepareToPlay];
 }
 
 @end

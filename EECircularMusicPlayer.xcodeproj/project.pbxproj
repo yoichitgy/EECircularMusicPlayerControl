@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9827D025166F81CA00A283CF /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9827D024166F81CA00A283CF /* AVFoundation.framework */; };
+		98B42D5E166F891B0099A841 /* Jimdubtrix_XTC-of-Gold-160.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 98B42D5D166F891B0099A841 /* Jimdubtrix_XTC-of-Gold-160.mp3 */; };
 		98CA33B016324ECF00E8FB73 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98CA33AF16324ECF00E8FB73 /* UIKit.framework */; };
 		98CA33B216324ECF00E8FB73 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98CA33B116324ECF00E8FB73 /* Foundation.framework */; };
 		98CA33B416324ECF00E8FB73 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98CA33B316324ECF00E8FB73 /* CoreGraphics.framework */; };
@@ -24,6 +26,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9827D024166F81CA00A283CF /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		98B42D5D166F891B0099A841 /* Jimdubtrix_XTC-of-Gold-160.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Jimdubtrix_XTC-of-Gold-160.mp3"; sourceTree = "<group>"; };
 		98CA33AB16324ECF00E8FB73 /* EECircularMusicPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EECircularMusicPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		98CA33AF16324ECF00E8FB73 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		98CA33B116324ECF00E8FB73 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -54,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9827D025166F81CA00A283CF /* AVFoundation.framework in Frameworks */,
 				98CA33F91632541400E8FB73 /* QuartzCore.framework in Frameworks */,
 				98CA33B016324ECF00E8FB73 /* UIKit.framework in Frameworks */,
 				98CA33B216324ECF00E8FB73 /* Foundation.framework in Frameworks */,
@@ -89,6 +94,7 @@
 				98CA33B116324ECF00E8FB73 /* Foundation.framework */,
 				98CA33B316324ECF00E8FB73 /* CoreGraphics.framework */,
 				98CA33F81632541400E8FB73 /* QuartzCore.framework */,
+				9827D024166F81CA00A283CF /* AVFoundation.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -116,6 +122,7 @@
 				98CA33C116324ECF00E8FB73 /* Default.png */,
 				98CA33C316324ECF00E8FB73 /* Default@2x.png */,
 				98CA33C516324ECF00E8FB73 /* Default-568h@2x.png */,
+				98B42D5D166F891B0099A841 /* Jimdubtrix_XTC-of-Gold-160.mp3 */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -198,6 +205,7 @@
 				98CA33C416324ECF00E8FB73 /* Default@2x.png in Resources */,
 				98CA33C616324ECF00E8FB73 /* Default-568h@2x.png in Resources */,
 				98CA33CC16324ECF00E8FB73 /* EEViewController.xib in Resources */,
+				98B42D5E166F891B0099A841 /* Jimdubtrix_XTC-of-Gold-160.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
