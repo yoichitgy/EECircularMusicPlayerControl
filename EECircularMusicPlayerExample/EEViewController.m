@@ -30,13 +30,13 @@
     [self.audioPlayer prepareToPlay];
     
     // Set duration
-    self.player.duration = self.audioPlayer.duration;
-    self.player.delegate = self;
+    self.playerControl.duration = self.audioPlayer.duration;
+    self.playerControl.delegate = self;
 }
 
 - (void)viewDidUnload
 {
-    self.player = nil;
+    self.playerControl = nil;
     self.audioPlayer = nil;
     [super viewDidUnload];
 }
@@ -44,7 +44,7 @@
 - (IBAction)didTouchUpInside:(id)sender
 {
     BOOL startsPlaying = !self.audioPlayer.playing;
-    self.player.playing = startsPlaying;
+    self.playerControl.playing = startsPlaying;
     if (startsPlaying) {
         [self.audioPlayer play];
     }
@@ -64,7 +64,7 @@
 #pragma mark - AVAudioPlayerDelegate
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
 {
-    self.player.playing = NO;
+    self.playerControl.playing = NO;
     [self.audioPlayer prepareToPlay];
 }
 
