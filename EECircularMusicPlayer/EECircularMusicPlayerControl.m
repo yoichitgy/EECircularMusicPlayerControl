@@ -247,6 +247,16 @@
     [self.circularMusicPlayerLayer.buttonLayer setNeedsDisplay];
 }
 
+- (float)progressTrackRatio
+{
+    return self.circularMusicPlayerLayer.progressTrackRatio;
+}
+
+- (void)setProgressTrackRatio:(CGFloat)progressTrackRatio
+{
+    self.circularMusicPlayerLayer.progressTrackRatio = progressTrackRatio;
+}
+
 #pragma mark Progress Part
 - (UIColor *)trackTintColor
 {
