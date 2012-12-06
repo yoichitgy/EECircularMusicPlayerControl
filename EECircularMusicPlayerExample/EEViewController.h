@@ -12,7 +12,8 @@
 
 @interface EEViewController : UIViewController <EECircularMusicPlayerControlDelegate, AVAudioPlayerDelegate>
 
-@property (strong, nonatomic) IBOutlet EECircularMusicPlayerControl *playerControl;
+@property (strong, nonatomic) IBOutlet EECircularMusicPlayerControl *playerControl1;
+@property (strong, nonatomic) IBOutlet EECircularMusicPlayerControl *playerControl2;
 - (IBAction)didTouchUpInside:(id)sender;
 
 @end
