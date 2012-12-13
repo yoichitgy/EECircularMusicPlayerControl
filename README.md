@@ -4,7 +4,7 @@ EECircularMusicPlayerControl is a UI control to play a music and indicate its pr
 
 Installation
 -----------
-Copy the files in "EECircularMusicPlayer" directory to your project.
+Copy the files in "EECircularMusicPlayerControl" directory to your project.
 
 Usage
 -----------
