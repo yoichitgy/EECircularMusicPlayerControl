@@ -51,6 +51,7 @@
 		98CA33F2163253C700E8FB73 /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.md; sourceTree = "<group>"; };
 		98CA33F3163253C700E8FB73 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		98CA33F81632541400E8FB73 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		98E507D01679F72200AF7829 /* LICENSE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +73,7 @@
 		98CA33A016324ECF00E8FB73 = {
 			isa = PBXGroup;
 			children = (
+				98E507D01679F72200AF7829 /* LICENSE.txt */,
 				98CA33DE1632508000E8FB73 /* EECircularMusicPlayer */,
 				98CA33B516324ECF00E8FB73 /* EECircularMusicPlayerExample */,
 				98CA33AE16324ECF00E8FB73 /* Frameworks */,
