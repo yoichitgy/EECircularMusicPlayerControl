@@ -26,6 +26,7 @@ Customization
 -----------
 The following properties can be customized to make your own appearance:
 
+* progressTrackRatio
 * trackTintColor
 * highlightedTrackTintColor
 * progressTintColor
