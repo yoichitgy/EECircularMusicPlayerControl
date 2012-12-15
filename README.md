@@ -2,6 +2,8 @@ EECircularMusicPlayerControl
 =============
 EECircularMusicPlayerControl is a UI control to play a music and indicate its progress. It's easy to use in your project, and supports customization of the colors applied to the component parts.
 
+![Screenshot](https://raw.github.com/el-eleven/EECircularMusicPlayerControl/master/Images/Screenshot.png)
+
 Installation
 -----------
 Copy the files in "EECircularMusicPlayerControl" directory to your project.
