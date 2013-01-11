@@ -48,7 +48,7 @@ The following features shall be implemented in the next update. If you implement
 LEGAL
 -----------
 ### DACircularProgress
-EECircularMusicPlayerControl contains DACircularProgress by Daniel Amitay available under MIT license. Refer to "LICENSE.md" and "README.md" files in "DACircularProgress" directory for more information.
+EECircularMusicPlayerControl contains [DACircularProgress](https://github.com/danielamitay/DACircularProgress) by Daniel Amitay available under MIT license. Refer to "LICENSE.md" and "README.md" files in "DACircularProgress" directory for more information.
 
 * Website: [http://www.amitay.us](http://www.amitay.us)
 
@@ -62,7 +62,7 @@ The example project contains the music "XTC of Gold" by Beatnabob, also known as
 
 License
 -----------
-EECircularMusicPlayerControl is available under MIT license. Refert to "LICENSE.txt" file for details.
+EECircularMusicPlayerControl is available under MIT license. Refer to ["LICENSE.txt"](https://raw.github.com/el-eleven/EECircularMusicPlayerControl/master/LICENSE.txt) file for details.
 
 Credits
 -----------
