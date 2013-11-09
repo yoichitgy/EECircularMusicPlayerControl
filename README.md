@@ -30,6 +30,10 @@ At last, set *duration* property of the control.
 
 That's all you have to do! The example app in "EECircularMusicPlayerExample" directory shows a practical example to use the control with AVAudioPlayer. There is another way to use EECircularMusicPlayerControl without the delegate. Refet to example #2 in the example app to see how to use it without the delegate.
     
+Demo Project
+-----------
+Open EECircularMusicPlayer.xcodeproj and run.
+
 Customization
 -----------
 The following properties can be customized to make your own appearance:
