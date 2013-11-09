@@ -6,7 +6,11 @@ EECircularMusicPlayerControl is a UI control to play a music and indicate its pr
 
 Installation
 -----------
-Copy the files in "EECircularMusicPlayerControl" directory to your project.
+EECircularMusicPlayerControl can be installed by [CocoaPods](http://cocoapods.org/) with your Podfile containing the following line.
+
+    pod 'EECircularMusicPlayerControl'
+
+Or, just copy the files in "EECircularMusicPlayerControl" directory to your project. In this case, you have to add the `-fobjc-arc` compiler flag to the EEToolbarCenterButton source (.m) files if your project doesn't use ARC.
 
 Usage
 -----------
