@@ -48,7 +48,7 @@ The following features shall be implemented in the next update. If you implement
 LEGAL
 -----------
 ### DACircularProgress
-EECircularMusicPlayerControl contains [DACircularProgress](https://github.com/danielamitay/DACircularProgress) by Daniel Amitay available under MIT license. Refer to "LICENSE.md" and "README.md" files in "DACircularProgress" directory for more information.
+EECircularMusicPlayerControl contains a modified version of [DACircularProgress](https://github.com/danielamitay/DACircularProgress) created by Daniel Amitay and distributed under MIT license. Refer to "LICENSE.md" and "README.md" files in "DACircularProgress" directory for more information.
 
 * Website: [http://www.amitay.us](http://www.amitay.us)
 
