@@ -36,7 +36,7 @@
 
 @interface EECircularMusicPlayerControl : UIControl
 
-@property(nonatomic, unsafe_unretained) id<EECircularMusicPlayerControlDelegate> delegate;
+@property(nonatomic, weak) id<EECircularMusicPlayerControlDelegate> delegate;
 @property(nonatomic) CGFloat progressTrackRatio;
 
 // Progress part
