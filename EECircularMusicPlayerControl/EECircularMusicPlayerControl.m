@@ -26,7 +26,7 @@
 
 #import "EECircularMusicPlayerControl.h"
 #import <QuartzCore/QuartzCore.h>
-#import "DACircularProgressView.h"
+#import "EECircularMusicPlayerDACircularProgressView.h"
 
 #pragma mark - EEPlayerButtonLayer
 @interface EEPlayerButtonLayer : CALayer
@@ -118,7 +118,7 @@
 @interface EECircularMusicPlayerLayer : CALayer
 
 @property(nonatomic) CGFloat progressTrackRatio;
-@property(nonatomic, strong) DACircularProgressLayer *progressLayer;
+@property(nonatomic, strong) EECircularMusicPlayerDACircularProgressLayer *progressLayer;
 @property(nonatomic, strong) EEPlayerButtonLayer *buttonLayer;
 
 @end
@@ -144,7 +144,7 @@
         UIColor *highlightedIconColor = [UIColor colorWithWhite:174.0f/255.0f alpha:1.0f];
 
         // Progress layer
-        self.progressLayer = [DACircularProgressLayer layer];
+        self.progressLayer = [EECircularMusicPlayerDACircularProgressLayer layer];
         self.progressLayer.thicknessRatio = thicknessRatio;
         self.progressLayer.trackTintColor = trackTintColor;
         self.progressLayer.progressTintColor = progressTintColor;

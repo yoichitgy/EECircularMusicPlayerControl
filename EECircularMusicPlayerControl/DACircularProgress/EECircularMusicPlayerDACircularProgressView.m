@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 Daniel Amitay. All rights reserved.
 //
 
-#import "DACircularProgressView.h"
+#import "EECircularMusicPlayerDACircularProgressView.h"
 
-@implementation DACircularProgressLayer
+@implementation EECircularMusicPlayerDACircularProgressLayer
 
 @synthesize trackTintColor = _trackTintColor;
 @synthesize progressTintColor = _progressTintColor;
@@ -34,7 +34,7 @@
     return self;
 }
 
-- (id)initWithLayer:(DACircularProgressLayer *)layer
+- (id)initWithLayer:(EECircularMusicPlayerDACircularProgressLayer *)layer
 {
     self = [super initWithLayer:layer];
     if (self)
@@ -116,11 +116,11 @@
 
 @end
 
-@implementation DACircularProgressView
+@implementation EECircularMusicPlayerDACircularProgressView
 
 + (void) initialize
 {
-    if (self != [DACircularProgressView class])
+    if (self != [EECircularMusicPlayerDACircularProgressView class])
         return;
     
     id appearance = [self appearance];
@@ -132,12 +132,12 @@
 
 + (Class)layerClass
 {
-    return [DACircularProgressLayer class];
+    return [EECircularMusicPlayerDACircularProgressLayer class];
 }
 
-- (DACircularProgressLayer *)circularProgressLayer
+- (EECircularMusicPlayerDACircularProgressLayer *)circularProgressLayer
 {
-    return (DACircularProgressLayer *)self.layer;
+    return (EECircularMusicPlayerDACircularProgressLayer *)self.layer;
 }
 
 - (id)init
