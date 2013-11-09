@@ -4,6 +4,10 @@ EECircularMusicPlayerControl is a UI control to play a music and indicate its pr
 
 ![Screenshot](https://raw.github.com/el-eleven/EECircularMusicPlayerControl/master/Images/Screenshot.png)
 
+Supported Environment
+-----------
+iOS 5 or later.
+
 Installation
 -----------
 EECircularMusicPlayerControl can be installed by [CocoaPods](http://cocoapods.org/) with your Podfile containing the following line.
