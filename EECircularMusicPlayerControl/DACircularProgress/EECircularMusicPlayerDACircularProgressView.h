@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 
-@interface DACircularProgressLayer : CALayer
+@interface EECircularMusicPlayerDACircularProgressLayer : CALayer
 
 @property(nonatomic, strong) UIColor *trackTintColor;
 @property(nonatomic, strong) UIColor *progressTintColor;
@@ -24,7 +24,7 @@
 @end
 
 
-@interface DACircularProgressView : UIView
+@interface EECircularMusicPlayerDACircularProgressView : UIView
 
 @property(nonatomic, strong) UIColor *trackTintColor UI_APPEARANCE_SELECTOR;
 @property(nonatomic, strong) UIColor *progressTintColor UI_APPEARANCE_SELECTOR;

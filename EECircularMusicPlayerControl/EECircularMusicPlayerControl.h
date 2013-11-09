@@ -25,7 +25,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DACircularProgressView.h"
+#import "EECircularMusicPlayerDACircularProgressView.h"
 
 @protocol EECircularMusicPlayerControlDelegate <NSObject>
 
