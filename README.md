@@ -57,7 +57,7 @@ The following features shall be implemented in the next update. If you implement
 * Add *paused* state. Current version has only *playing* and *stopped* states.
 * Add shadow or gradient effects to draw the control. Currently it's filled with solid colors.
 
-LEGAL
+Legal
 -----------
 ### DACircularProgress
 EECircularMusicPlayerControl contains a modified version of [DACircularProgress](https://github.com/danielamitay/DACircularProgress) created by Daniel Amitay and distributed under MIT license. Refer to "LICENSE.md" and "README.md" files in "DACircularProgress" directory for more information.
