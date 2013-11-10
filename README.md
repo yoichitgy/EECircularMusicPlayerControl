@@ -4,9 +4,17 @@ EECircularMusicPlayerControl is a UI control to play a music and indicate its pr
 
 ![Screenshot](https://raw.github.com/el-eleven/EECircularMusicPlayerControl/master/Images/Screenshot.png)
 
+Supported Environment
+-----------
+iOS 5 or later.
+
 Installation
 -----------
-Copy the files in "EECircularMusicPlayerControl" directory to your project.
+EECircularMusicPlayerControl can be installed by [CocoaPods](http://cocoapods.org/) with your Podfile containing the following line.
+
+    pod 'EECircularMusicPlayerControl'
+
+Or, just copy the files in "EECircularMusicPlayerControl" directory to your project. In this case, you have to add the `-fobjc-arc` compiler flag to the EEToolbarCenterButton source (.m) files if your project doesn't use ARC.
 
 Usage
 -----------
@@ -20,8 +28,12 @@ At last, set *duration* property of the control.
 
     self.yourCircularMusicPlayerControl.duration = self.yourAudioPlayer.duration;
 
-That's all you have to do! The example app in "EECircularMusicPlayerExample" directory shows a practical example to use the control with AVAudioPlayer. There is another way to use EECircularMusicPlayerControl without the delegate. Refet to example #2 in the example app to see how to use it without the delegate.
+That's all you have to do! The example app in "EECircularMusicPlayerExample" directory shows a practical example to use the control with AVAudioPlayer. There is another way to use EECircularMusicPlayerControl without the delegate. Refer to example #2 in the example app to see how to use it without the delegate.
     
+Demo Project
+-----------
+Open EECircularMusicPlayer.xcodeproj and run.
+
 Customization
 -----------
 The following properties can be customized to make your own appearance:
@@ -45,10 +57,10 @@ The following features shall be implemented in the next update. If you implement
 * Add *paused* state. Current version has only *playing* and *stopped* states.
 * Add shadow or gradient effects to draw the control. Currently it's filled with solid colors.
 
-LEGAL
+Legal
 -----------
 ### DACircularProgress
-EECircularMusicPlayerControl contains [DACircularProgress](https://github.com/danielamitay/DACircularProgress) by Daniel Amitay available under MIT license. Refer to "LICENSE.md" and "README.md" files in "DACircularProgress" directory for more information.
+EECircularMusicPlayerControl contains a modified version of [DACircularProgress](https://github.com/danielamitay/DACircularProgress) created by Daniel Amitay and distributed under MIT license. Refer to "LICENSE.md" and "README.md" files in "DACircularProgress" directory for more information.
 
 * Website: [http://www.amitay.us](http://www.amitay.us)
 
