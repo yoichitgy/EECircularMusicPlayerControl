@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "EECircularMusicPlayerControl"
-  s.version      = "0.0.2"
+  s.version      = "0.1"
   s.summary      = "A control to play a music with a progress indicator."
   s.description  = <<-DESC
                    EECircularMusicPlayerControl is a UI control to play a music and to indicate its progress. It's easy to use in your project, and supports customization of the colors applied to the component parts.
