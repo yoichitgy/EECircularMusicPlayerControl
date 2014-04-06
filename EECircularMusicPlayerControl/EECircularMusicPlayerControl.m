@@ -72,9 +72,10 @@
     }
     else {
         CGFloat factor = 0.75f;
-        topTintColor = [self.topTintColor colorWithAlphaComponent:factor];
-        bottomTintColor = [self.bottomTintColor colorWithAlphaComponent:factor];
-        iconColor = [self.iconColor colorWithAlphaComponent:factor];
+        UIColor *clearColor = [UIColor clearColor];
+        topTintColor = [self.topTintColor isEqual:clearColor] ? clearColor : [self.topTintColor colorWithAlphaComponent:factor];
+        bottomTintColor = [self.bottomTintColor isEqual:clearColor] ? clearColor : [self.bottomTintColor colorWithAlphaComponent:factor];
+        iconColor = [self.iconColor isEqual:clearColor] ? clearColor : [self.iconColor colorWithAlphaComponent:factor];
     }
 
     // Fill circle area
@@ -145,7 +146,8 @@
     }
     else {
         CGFloat factor = 0.75f;
-        color = [self.color colorWithAlphaComponent:factor];
+        UIColor *clearColor = [UIColor clearColor];
+        color = [self.color isEqual:clearColor] ? clearColor : [self.color colorWithAlphaComponent:factor];
     }
     
     CGFloat inset = self.width / 2.0f;
