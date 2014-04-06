@@ -13,6 +13,7 @@
 
 @property(nonatomic, strong) AVAudioPlayer *audioPlayer; // This is used by playerControl1.
 @property (strong, nonatomic) NSTimer *timer; // This is used by playerControl2.
+@property (nonatomic) dispatch_source_t timerSource; // This is used by playerControl3.
 
 @end
 
@@ -53,14 +54,26 @@
     self.playerControl2.highlightedButtonBottomTintColor = [UIColor colorWithWhite:217.0f/255.0f alpha:1.0f];
     self.playerControl2.iconColor = [UIColor colorWithWhite:123.0f/255.0f alpha:1.0f];
     self.playerControl2.highlightedIconColor =[UIColor colorWithWhite:80.0f/255.0f alpha:1.0f];
-}
-
-- (void)viewDidUnload
-{
-    self.playerControl1 = nil;
-    self.playerControl2 = nil;
-    self.audioPlayer = nil;
-    [super viewDidUnload];
+    
+    //
+    // Example 3 (playerControl3)
+    // This is an example to draw a border.
+    //
+    self.playerControl3.duration = 20.0;
+    self.playerControl3.progressTrackRatio = 0.25f;
+    self.playerControl3.trackTintColor = [UIColor clearColor];
+    self.playerControl3.highlightedTrackTintColor = [UIColor clearColor];
+    self.playerControl3.progressTintColor = [UIColor colorWithRed:0.0f/255.0f green:88.0f/255.0f blue:219.0f/255.0f alpha:1.0f];
+    self.playerControl3.highlightedProgressTintColor = [UIColor colorWithRed:11.0f/255.0f green:76.0f/255.0f blue:176.0f/255.0f alpha:1.0f];
+    self.playerControl3.buttonTopTintColor = [UIColor clearColor];
+    self.playerControl3.highlightedButtonTopTintColor = [UIColor clearColor];
+    self.playerControl3.buttonBottomTintColor = [UIColor clearColor];
+    self.playerControl3.highlightedButtonBottomTintColor = [UIColor clearColor];
+    self.playerControl3.iconColor = [UIColor colorWithRed:0.0f/255.0f green:88.0f/255.0f blue:219.0f/255.0f alpha:1.0f];
+    self.playerControl3.highlightedIconColor = [UIColor colorWithRed:11.0f/255.0f green:76.0f/255.0f blue:176.0f/255.0f alpha:1.0f];
+    self.playerControl3.borderColor = [UIColor colorWithRed:0.0f/255.0f green:88.0f/255.0f blue:219.0f/255.0f alpha:1.0f];
+    self.playerControl3.highlightedBorderColor = [UIColor colorWithRed:11.0f/255.0f green:76.0f/255.0f blue:176.0f/255.0f alpha:1.0f];
+    self.playerControl3.borderWidth = 1.0f;
 }
 
 - (void)startControl2
@@ -87,6 +100,40 @@
     }
 }
 
+- (void)startControl3
+{
+    self.timerSource = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0));
+    dispatch_source_set_timer(self.timerSource, dispatch_time(DISPATCH_TIME_NOW, 0), NSEC_PER_SEC / 10.0, 0.0);
+    dispatch_source_set_event_handler(self.timerSource, ^{
+        dispatch_async(dispatch_get_main_queue(),
+                       ^{
+                           NSTimeInterval time = self.playerControl3.currentTime + 1.0 / 10.0;
+                           self.playerControl3.currentTime = time;
+                           
+                           if (self.playerControl3.currentTime >= self.playerControl3.duration && NULL != self.timerSource)
+                           {
+                               [self stopControl3];
+                               self.playerControl3.playing = NO;
+                               self.playerControl3.currentTime = 0.0;
+                           }
+                       });
+    });
+    dispatch_source_set_cancel_handler(self.timerSource, ^{
+        if(self.timerSource){
+            dispatch_release(self.timerSource);
+            self.timerSource = NULL;
+        }
+    });
+    dispatch_resume(self.timerSource);
+}
+
+- (void)stopControl3
+{
+    if(self.timerSource){
+        dispatch_source_cancel(self.timerSource);
+    }
+}
+
 - (IBAction)didTouchUpInside:(id)sender
 {
     if (sender == self.playerControl1) {
@@ -109,6 +156,16 @@
         }
         else {
             [self stopControl2];
+        }
+    }
+    else if (sender == self.playerControl3) {
+        BOOL startsPlaying = !self.playerControl3.playing;
+        self.playerControl3.playing = startsPlaying;
+        if (startsPlaying) {
+            [self startControl3];
+        }
+        else {
+            [self stopControl3];
         }
     }
 }
