@@ -170,6 +170,14 @@
     }
 }
 
+- (IBAction)didSwitchChangeValue:(id)sender
+{
+    BOOL enabled = ((UISwitch *)sender).on;
+    self.playerControl1.enabled = enabled;
+    self.playerControl2.enabled = enabled;
+    self.playerControl3.enabled = enabled;
+}
+
 #pragma mark - EECircularMusicPlayerControlDelegate
 - (NSTimeInterval)currentTime
 {

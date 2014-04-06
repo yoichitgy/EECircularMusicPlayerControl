@@ -68,8 +68,9 @@
     }
     else {
         CGFloat factor = 0.75f;
-        trackTintColor = [self.trackTintColor colorWithAlphaComponent:factor];
-        progressTintColor = [self.progressTintColor colorWithAlphaComponent:factor];
+        UIColor *clearColor = [UIColor clearColor];
+        trackTintColor = [self.trackTintColor isEqual:clearColor] ? clearColor : [self.trackTintColor colorWithAlphaComponent:factor];
+        progressTintColor = [self.progressTintColor isEqual:clearColor] ? clearColor : [self.progressTintColor colorWithAlphaComponent:factor];
     }
     
     CGContextSetFillColorWithColor(context, trackTintColor.CGColor);
