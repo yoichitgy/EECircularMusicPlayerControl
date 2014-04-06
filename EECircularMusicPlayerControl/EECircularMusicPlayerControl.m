@@ -114,12 +114,57 @@
 
 @end
 
+
+#pragma mark - EEPlayerBorderLayer
+@interface EEPlayerBorderLayer : CALayer
+
+@property(nonatomic, strong) UIColor *color;
+@property(nonatomic, strong) UIColor *highlightedColor;
+@property(nonatomic) CGFloat width;
+@property(nonatomic) BOOL highlighted;
+@property(nonatomic) BOOL enabled;
+
+@end
+
+@implementation EEPlayerBorderLayer
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        self.enabled = YES;
+    }
+    return self;
+}
+
+- (void)drawInContext:(CGContextRef)context
+{
+    UIColor *color;
+    if (self.enabled) {
+        color = self.highlighted ? self.highlightedColor : self.color;
+    }
+    else {
+        CGFloat factor = 0.75f;
+        color = [self.color colorWithAlphaComponent:factor];
+    }
+    
+    CGFloat inset = self.width / 2.0f;
+    CGRect insetFrame = CGRectInset(self.bounds, inset, inset); // To draw inside the frame.
+    CGContextSetStrokeColorWithColor(context, color.CGColor);
+    CGContextSetLineWidth(context, self.width);
+    CGContextStrokeEllipseInRect(context, insetFrame);
+}
+
+@end
+
+
 #pragma mark - EECircularMusicPlayerLayer
 @interface EECircularMusicPlayerLayer : CALayer
 
 @property(nonatomic) CGFloat progressTrackRatio;
 @property(nonatomic, strong) EECircularMusicPlayerDACircularProgressLayer *progressLayer;
 @property(nonatomic, strong) EEPlayerButtonLayer *buttonLayer;
+@property(nonatomic, strong) EEPlayerBorderLayer *borderLayer;
 
 @end
 
@@ -137,11 +182,14 @@
         UIColor *topTintColor = [UIColor colorWithRed:50.0f/255.0f green:107.0f/255.0f blue:210.0f/255.0f alpha:1.0f];
         UIColor *bottomTintColor = [UIColor colorWithRed:30.0f/255.0f green:85.0f/255.0f blue:205.0f/255.0f alpha:1.0f];
         UIColor *iconColor = [UIColor colorWithWhite:210.0f/255.0f alpha:1.0f];
+        UIColor *borderColor = [UIColor clearColor];
         UIColor *highlightedTrackTintColor = [UIColor colorWithRed:118.0f/255.0f green:131.0f/255.0f blue:151.0f/255.0f alpha:1.0f];
         UIColor *highlightedProgressTintColor = [UIColor colorWithRed:42.0f/255.0f green:59.0f/255.0f blue:92.0f/255.0f alpha:1.0f];
         UIColor *highlightedTopTintColor = [UIColor colorWithRed:11.0f/255.0f green:76.0f/255.0f blue:176.0f/255.0f alpha:1.0f];
         UIColor *highlightedBottomTintColor = [UIColor colorWithRed:0.0f/255.0f green:44.0f/255.0f blue:126.0f/255.0f alpha:1.0f];
         UIColor *highlightedIconColor = [UIColor colorWithWhite:174.0f/255.0f alpha:1.0f];
+        UIColor *highlightedBorderColor = [UIColor clearColor];
+        CGFloat borderWidth = 1.0f;
 
         // Progress layer
         self.progressLayer = [EECircularMusicPlayerDACircularProgressLayer layer];
@@ -162,6 +210,13 @@
         self.buttonLayer.highlightedBottomTintColor = highlightedBottomTintColor;
         self.buttonLayer.highlightedIconColor = highlightedIconColor;
         [self addSublayer:self.buttonLayer];
+        
+        // Border layer
+        self.borderLayer = [EEPlayerBorderLayer layer];
+        self.borderLayer.color = borderColor;
+        self.borderLayer.highlightedColor = highlightedBorderColor;
+        self.borderLayer.width = borderWidth;
+        [self addSublayer:self.borderLayer];
     }
     return self;
 }
@@ -176,8 +231,10 @@
                                         0.5f * self.progressTrackRatio * frame.size.height,
                                         buttonPartRatio * frame.size.width,
                                         buttonPartRatio * frame.size.height);
+    self.borderLayer.frame = CGRectMake(0.0f, 0.0f, frame.size.width, frame.size.height);
     [self.progressLayer setNeedsDisplay];
     [self.buttonLayer setNeedsDisplay];
+    [self.borderLayer setNeedsDisplay];
 }
 
 - (CGFloat)progressTrackRatio
@@ -245,6 +302,7 @@
     CGFloat scale = [UIScreen mainScreen].scale;
     self.circularMusicPlayerLayer.progressLayer.contentsScale = scale;
     self.circularMusicPlayerLayer.buttonLayer.contentsScale = scale;
+    self.circularMusicPlayerLayer.borderLayer.contentsScale = scale;
 }
 
 - (void)setEnabled:(BOOL)enabled
@@ -252,8 +310,10 @@
     [super setEnabled:enabled];
     self.circularMusicPlayerLayer.progressLayer.enabled = enabled;
     self.circularMusicPlayerLayer.buttonLayer.enabled = enabled;
+    self.circularMusicPlayerLayer.borderLayer.enabled = enabled;
     [self.circularMusicPlayerLayer.progressLayer setNeedsDisplay];
     [self.circularMusicPlayerLayer.buttonLayer setNeedsDisplay];
+    [self.circularMusicPlayerLayer.borderLayer setNeedsDisplay];
 }
 
 - (void)setHighlighted:(BOOL)highlighted
@@ -261,8 +321,10 @@
     [super setHighlighted:highlighted];
     self.circularMusicPlayerLayer.progressLayer.highlighted = highlighted;
     self.circularMusicPlayerLayer.buttonLayer.highlighted = highlighted;
+    self.circularMusicPlayerLayer.borderLayer.highlighted = highlighted;
     [self.circularMusicPlayerLayer.progressLayer setNeedsDisplay];
     [self.circularMusicPlayerLayer.buttonLayer setNeedsDisplay];
+    [self.circularMusicPlayerLayer.borderLayer setNeedsDisplay];
 }
 
 - (float)progressTrackRatio
@@ -435,6 +497,40 @@
         self.timer = nil;
         self.currentTime = 0.0;
     }
+}
+
+#pragma mark Border Part
+- (UIColor *)borderColor
+{
+    return self.circularMusicPlayerLayer.borderLayer.color;
+}
+
+- (void)setBorderColor:(UIColor *)borderColor
+{
+    self.circularMusicPlayerLayer.borderLayer.color = borderColor;
+    [self.circularMusicPlayerLayer.borderLayer setNeedsDisplay];
+}
+
+- (UIColor *)highlightedBorderColor
+{
+    return self.circularMusicPlayerLayer.borderLayer.highlightedColor;
+}
+
+- (void)setHighlightedBorderColor:(UIColor *)highlightedBorderColor
+{
+    self.circularMusicPlayerLayer.borderLayer.highlightedColor = highlightedBorderColor;
+    [self.circularMusicPlayerLayer.borderLayer setNeedsDisplay];
+}
+
+- (CGFloat)borderWidth
+{
+    return self.circularMusicPlayerLayer.borderLayer.width;
+}
+
+- (void)setBorderWidth:(CGFloat)borderWidth
+{
+    self.circularMusicPlayerLayer.borderLayer.width = borderWidth;
+    [self.circularMusicPlayerLayer.borderLayer setNeedsDisplay];
 }
 
 #pragma mark Event Handler
