@@ -49,13 +49,15 @@ The following properties can be customized to make your own appearance:
 * highlightedButtonBottomTintColor
 * iconColor
 * highlightedIconColor
+* borderColor
+* highlightedBorderColor
+* borderWidth
 
 Roadmap
 -----------
 The following features shall be implemented in the next update. If you implement one of the features, please feel free to send a pull request.
 
 * Add *paused* state. Current version has only *playing* and *stopped* states.
-* Add shadow or gradient effects to draw the control. Currently it's filled with solid colors.
 
 Legal
 -----------

@@ -57,4 +57,9 @@
 @property(nonatomic, strong) UIColor *highlightedIconColor UI_APPEARANCE_SELECTOR;
 @property(nonatomic) BOOL playing;
 
+// Border part
+@property(nonatomic, strong) UIColor *borderColor UI_APPEARANCE_SELECTOR;
+@property(nonatomic, strong) UIColor *highlightedBorderColor UI_APPEARANCE_SELECTOR;
+@property(nonatomic) CGFloat borderWidth UI_APPEARANCE_SELECTOR;
+
 @end
