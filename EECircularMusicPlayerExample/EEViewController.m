@@ -11,7 +11,7 @@
 
 @interface EEViewController ()
 
-@property(nonatomic, strong) AVAudioPlayer *audioPlayer; // This is used by playerControl1.
+@property (strong, nonatomic) AVAudioPlayer *audioPlayer; // This is used by playerControl1.
 @property (strong, nonatomic) NSTimer *timer; // This is used by playerControl2.
 @property (nonatomic) dispatch_source_t timerSource; // This is used by playerControl3.
 
