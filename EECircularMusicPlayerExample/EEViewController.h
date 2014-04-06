@@ -16,5 +16,6 @@
 @property (strong, nonatomic) IBOutlet EECircularMusicPlayerControl *playerControl2;
 @property (strong, nonatomic) IBOutlet EECircularMusicPlayerControl *playerControl3;
 - (IBAction)didTouchUpInside:(id)sender;
+- (IBAction)didSwitchChangeValue:(id)sender;
 
 @end
