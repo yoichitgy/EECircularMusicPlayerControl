@@ -37,6 +37,9 @@
 @property(nonatomic, strong) UIColor *highlightedTopTintColor;
 @property(nonatomic, strong) UIColor *highlightedBottomTintColor;
 @property(nonatomic, strong) UIColor *highlightedIconColor;
+@property(nonatomic, strong) UIColor *disabledTopTintColor;
+@property(nonatomic, strong) UIColor *disabledBottomTintColor;
+@property(nonatomic, strong) UIColor *disabledIconColor;
 @property(nonatomic) BOOL enabled;
 @property(nonatomic) BOOL highlighted;
 @property(nonatomic) BOOL playing;
@@ -71,11 +74,20 @@
         iconColor = self.highlighted ? self.highlightedIconColor : self.iconColor;
     }
     else {
+        topTintColor = self.disabledTopTintColor;
+        bottomTintColor = self.disabledBottomTintColor;
+        iconColor = self.disabledIconColor;
         CGFloat factor = 0.75f;
         UIColor *clearColor = [UIColor clearColor];
-        topTintColor = [self.topTintColor isEqual:clearColor] ? clearColor : [self.topTintColor colorWithAlphaComponent:factor];
-        bottomTintColor = [self.bottomTintColor isEqual:clearColor] ? clearColor : [self.bottomTintColor colorWithAlphaComponent:factor];
-        iconColor = [self.iconColor isEqual:clearColor] ? clearColor : [self.iconColor colorWithAlphaComponent:factor];
+        if (!topTintColor) {
+            topTintColor = [self.topTintColor isEqual:clearColor] ? clearColor : [self.topTintColor colorWithAlphaComponent:factor];
+        }
+        if (!bottomTintColor) {
+            bottomTintColor = [self.bottomTintColor isEqual:clearColor] ? clearColor : [self.bottomTintColor colorWithAlphaComponent:factor];
+        }
+        if (!iconColor) {
+            iconColor = [self.iconColor isEqual:clearColor] ? clearColor : [self.iconColor colorWithAlphaComponent:factor];
+        }
     }
 
     // Fill circle area
@@ -121,6 +133,7 @@
 
 @property(nonatomic, strong) UIColor *color;
 @property(nonatomic, strong) UIColor *highlightedColor;
+@property(nonatomic, strong) UIColor *disabledColor;
 @property(nonatomic) CGFloat width;
 @property(nonatomic) BOOL highlighted;
 @property(nonatomic) BOOL enabled;
@@ -145,9 +158,12 @@
         color = self.highlighted ? self.highlightedColor : self.color;
     }
     else {
-        CGFloat factor = 0.75f;
-        UIColor *clearColor = [UIColor clearColor];
-        color = [self.color isEqual:clearColor] ? clearColor : [self.color colorWithAlphaComponent:factor];
+        color = self.disabledColor;
+        if (!color) {
+            CGFloat factor = 0.75f;
+            UIColor *clearColor = [UIColor clearColor];
+            color = [self.color isEqual:clearColor] ? clearColor : [self.color colorWithAlphaComponent:factor];
+        }
     }
     
     CGFloat inset = self.width / 2.0f;
@@ -200,6 +216,8 @@
         self.progressLayer.progressTintColor = progressTintColor;
         self.progressLayer.highlightedTrackTintColor = highlightedTrackTintColor;
         self.progressLayer.highlightedProgressTintColor = highlightedProgressTintColor;
+        self.progressLayer.disabledTrackTintColor = nil;
+        self.progressLayer.disabledProgressTintColor = nil;
         self.progressLayer.roundedCorners = 0;
         [self addSublayer:self.progressLayer];
         
@@ -211,12 +229,16 @@
         self.buttonLayer.highlightedTopTintColor = highlightedTopTintColor;
         self.buttonLayer.highlightedBottomTintColor = highlightedBottomTintColor;
         self.buttonLayer.highlightedIconColor = highlightedIconColor;
+        self.buttonLayer.disabledTopTintColor = nil;
+        self.buttonLayer.disabledBottomTintColor = nil;
+        self.buttonLayer.disabledIconColor = nil;
         [self addSublayer:self.buttonLayer];
         
         // Border layer
         self.borderLayer = [EEPlayerBorderLayer layer];
         self.borderLayer.color = borderColor;
         self.borderLayer.highlightedColor = highlightedBorderColor;
+        self.borderLayer.disabledColor = nil;
         self.borderLayer.width = borderWidth;
         [self addSublayer:self.borderLayer];
     }
@@ -384,6 +406,28 @@
     [self.circularMusicPlayerLayer.progressLayer setNeedsDisplay];
 }
 
+- (UIColor *)disabledTrackTintColor
+{
+    return self.circularMusicPlayerLayer.progressLayer.disabledTrackTintColor;
+}
+
+- (void)setDisabledTrackTintColor:(UIColor *)disabledTrackTintColor
+{
+    self.circularMusicPlayerLayer.progressLayer.disabledTrackTintColor = disabledTrackTintColor;
+    [self.circularMusicPlayerLayer.progressLayer setNeedsDisplay];
+}
+
+- (UIColor *)disabledProgressTintColor
+{
+    return self.circularMusicPlayerLayer.progressLayer.disabledProgressTintColor;
+}
+
+- (void)setDisabledProgressTintColor:(UIColor *)disabledProgressTintColor
+{
+    self.circularMusicPlayerLayer.progressLayer.disabledProgressTintColor = disabledProgressTintColor;
+    [self.circularMusicPlayerLayer.progressLayer setNeedsDisplay];
+}
+
 - (NSTimeInterval)currentTime
 {
     return self.circularMusicPlayerLayer.progressLayer.progress * self.duration;
@@ -481,6 +525,39 @@
     [self.circularMusicPlayerLayer.buttonLayer setNeedsDisplay];
 }
 
+- (UIColor *)disabledButtonTopTintColor
+{
+    return self.circularMusicPlayerLayer.buttonLayer.disabledTopTintColor;
+}
+
+- (void)setDisabledButtonTopTintColor:(UIColor *)disabledButtonTopTintColor
+{
+    self.circularMusicPlayerLayer.buttonLayer.disabledTopTintColor = disabledButtonTopTintColor;
+    [self.circularMusicPlayerLayer.buttonLayer setNeedsDisplay];
+}
+
+- (UIColor *)disabledButtonBottomTintColor
+{
+    return self.circularMusicPlayerLayer.buttonLayer.disabledBottomTintColor;
+}
+
+- (void)setDisabledButtonBottomTintColor:(UIColor *)disabledButtonBottomTintColor
+{
+    self.circularMusicPlayerLayer.buttonLayer.disabledBottomTintColor = disabledButtonBottomTintColor;
+    [self.circularMusicPlayerLayer.buttonLayer setNeedsDisplay];
+}
+
+- (UIColor *)disabledIconColor
+{
+    return self.circularMusicPlayerLayer.buttonLayer.disabledIconColor;
+}
+
+- (void)setDisabledIconColor:(UIColor *)disabledIconColor
+{
+    self.circularMusicPlayerLayer.buttonLayer.disabledIconColor = disabledIconColor;
+    [self.circularMusicPlayerLayer.buttonLayer setNeedsDisplay];
+}
+
 - (BOOL)playing
 {
     return self.circularMusicPlayerLayer.buttonLayer.playing;
@@ -521,6 +598,17 @@
 - (void)setHighlightedBorderColor:(UIColor *)highlightedBorderColor
 {
     self.circularMusicPlayerLayer.borderLayer.highlightedColor = highlightedBorderColor;
+    [self.circularMusicPlayerLayer.borderLayer setNeedsDisplay];
+}
+
+- (UIColor *)disabledBorderColor
+{
+    return self.circularMusicPlayerLayer.borderLayer.disabledColor;
+}
+
+- (void)setDisabledBorderColor:(UIColor *)disabledBorderColor
+{
+    self.circularMusicPlayerLayer.borderLayer.disabledColor = disabledBorderColor;
     [self.circularMusicPlayerLayer.borderLayer setNeedsDisplay];
 }
 

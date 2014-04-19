@@ -41,16 +41,22 @@ The following properties can be customized to make your own appearance:
 * progressTrackRatio
 * trackTintColor
 * highlightedTrackTintColor
+* disabledTrackTintColor
 * progressTintColor
 * highlightedProgressTintColor 
+* disabledProgressTintColor
 * buttonTopTintColor
 * highlightedButtonTopTintColor
+* disabledButtonTopTintColor
 * buttonBottomTintColor
 * highlightedButtonBottomTintColor
+* disabledButtonBottomTintColor
 * iconColor
 * highlightedIconColor
+* disabledIconColor
 * borderColor
 * highlightedBorderColor
+* disabledBorderColor
 * borderWidth
 
 Roadmap

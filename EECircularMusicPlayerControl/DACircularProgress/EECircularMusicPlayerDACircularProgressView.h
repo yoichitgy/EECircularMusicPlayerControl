@@ -15,6 +15,8 @@
 @property(nonatomic, strong) UIColor *progressTintColor;
 @property(nonatomic, strong) UIColor *highlightedTrackTintColor;
 @property(nonatomic, strong) UIColor *highlightedProgressTintColor;
+@property(nonatomic, strong) UIColor *disabledTrackTintColor;
+@property(nonatomic, strong) UIColor *disabledProgressTintColor;
 @property(nonatomic) NSInteger roundedCorners;
 @property(nonatomic) CGFloat thicknessRatio;
 @property(nonatomic) CGFloat progress;
@@ -30,6 +32,8 @@
 @property(nonatomic, strong) UIColor *progressTintColor UI_APPEARANCE_SELECTOR;
 @property(nonatomic, strong) UIColor *highlightedTrackTintColor UI_APPEARANCE_SELECTOR;
 @property(nonatomic, strong) UIColor *highlightedProgressTintColor UI_APPEARANCE_SELECTOR;
+@property(nonatomic, strong) UIColor *disabledTrackTintColor UI_APPEARANCE_SELECTOR;
+@property(nonatomic, strong) UIColor *disabledProgressTintColor UI_APPEARANCE_SELECTOR;
 @property(nonatomic) NSInteger roundedCorners UI_APPEARANCE_SELECTOR; // Can not use BOOL with UI_APPEARANCE_SELECTOR :-(
 @property(nonatomic) CGFloat thicknessRatio UI_APPEARANCE_SELECTOR;
 @property(nonatomic) CGFloat progress;
