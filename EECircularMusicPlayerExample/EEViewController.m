@@ -63,16 +63,22 @@
     self.playerControl3.progressTrackRatio = 0.25f;
     self.playerControl3.trackTintColor = [UIColor clearColor];
     self.playerControl3.highlightedTrackTintColor = [UIColor clearColor];
+    self.playerControl3.disabledTrackTintColor = [UIColor clearColor];
     self.playerControl3.progressTintColor = [UIColor colorWithRed:0.0f/255.0f green:88.0f/255.0f blue:219.0f/255.0f alpha:1.0f];
     self.playerControl3.highlightedProgressTintColor = [UIColor colorWithRed:11.0f/255.0f green:76.0f/255.0f blue:176.0f/255.0f alpha:1.0f];
+    self.playerControl3.disabledProgressTintColor = [UIColor lightGrayColor];
     self.playerControl3.buttonTopTintColor = [UIColor clearColor];
     self.playerControl3.highlightedButtonTopTintColor = [UIColor clearColor];
+    self.playerControl3.disabledButtonTopTintColor = [UIColor clearColor];
     self.playerControl3.buttonBottomTintColor = [UIColor clearColor];
     self.playerControl3.highlightedButtonBottomTintColor = [UIColor clearColor];
+    self.playerControl3.disabledButtonBottomTintColor = [UIColor clearColor];
     self.playerControl3.iconColor = [UIColor colorWithRed:0.0f/255.0f green:88.0f/255.0f blue:219.0f/255.0f alpha:1.0f];
     self.playerControl3.highlightedIconColor = [UIColor colorWithRed:11.0f/255.0f green:76.0f/255.0f blue:176.0f/255.0f alpha:1.0f];
+    self.playerControl3.disabledIconColor = [UIColor lightGrayColor];
     self.playerControl3.borderColor = [UIColor colorWithRed:0.0f/255.0f green:88.0f/255.0f blue:219.0f/255.0f alpha:1.0f];
     self.playerControl3.highlightedBorderColor = [UIColor colorWithRed:11.0f/255.0f green:76.0f/255.0f blue:176.0f/255.0f alpha:1.0f];
+    self.playerControl3.disabledBorderColor = [UIColor lightGrayColor];
     self.playerControl3.borderWidth = 1.0f;
 }
 
